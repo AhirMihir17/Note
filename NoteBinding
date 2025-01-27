@@ -1,0 +1,11 @@
+import 'package:get/get.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:notes/controller/note_Controller.dart';
+
+class NoteBinding implements Bindings{
+  @override
+  void dependencies() {
+    Get.put(NoteController());
+  }
+  
+}
