@@ -1,0 +1,27 @@
+class NoteModel {
+  String? title;
+  String? discription;
+  String? date;
+  String? time;
+  String? id;
+
+  NoteModel({this.title, this.discription, this.date, this.time, this.id});
+
+  NoteModel.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    discription = json['discription'];
+    date = json['date'];
+    time = json['time'];
+    id = json['id'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['title'] = this.title;
+    data['discription'] = this.discription;
+    data['date'] = this.date;
+    data['time'] = this.time;
+    data['id'] = this.id;
+    return data;
+  }
+}
