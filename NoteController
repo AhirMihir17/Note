@@ -1,0 +1,36 @@
+import 'dart:convert';
+
+import 'package:get/get.dart';
+import 'package:http/http.dart'as http;
+import 'package:notes/model/noteModel.dart';
+
+class NoteController extends GetxController{
+  RxList<NoteModel>notelist=RxList<NoteModel>();
+
+  @override
+  void onInit(){
+    super.onInit();
+  getdata();
+  }
+  
+  Future<void> getdata() async {
+    try{
+      final responce=await http.get(Uri.parse("https://678de0a2a64c82aeb11e293c.mockapi.io/note"));
+      if(responce.statusCode==200){
+        List data=jsonDecode(responce.body);
+        notelist.value=data.map((e) => NoteModel.fromJson(e),).toList();
+        Get.snackbar("Success", "Data Added Success Fulley");
+
+
+      }
+    }catch(e){
+      Get.snackbar("UnsuccessfulFull", "data not found");
+    }
+  }
+  void Add(NoteModel data){
+    Get.back();
+    notelist.add(data);
+    Get.snackbar("Success", "Data Added SuccessFully");
+  }
+  
+}
