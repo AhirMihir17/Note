@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:notes/controller/note_Controller.dart';
+import 'package:notes/model/noteModel.dart';
+
+class AddData extends GetView<NoteController> {
+  const AddData({super.key});
+
+
+
+  @override
+  Widget build(BuildContext context) {
+ TextEditingController id=TextEditingController();
+ TextEditingController time=TextEditingController();
+ TextEditingController date=TextEditingController();
+ TextEditingController description=TextEditingController();
+ TextEditingController title=TextEditingController();
+
+ return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("ADD DATA Screen")),
+      ),
+      body:Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextField(
+              controller: id,
+              decoration: InputDecoration(
+                  hintText: "Enter Id",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide(color: Colors.white))),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 35,),
+            TextField(
+              controller: time,
+              decoration: InputDecoration(
+                  hintText: "Enter time",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide(color: Colors.white))),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 25,),
+            TextField(
+              controller: date,
+              decoration: InputDecoration(
+                  hintText: "Enter date",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide(color: Colors.white))),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 25,),
+            TextField(
+              controller: description,
+              decoration: InputDecoration(
+                  hintText: "Enter description",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide(color: Colors.white))),
+            ),
+            SizedBox(height: 25,),
+            TextField(
+              controller:title,
+              decoration: InputDecoration(
+                  hintText: "Enter title",
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(35)),
+                      borderSide: BorderSide(color: Colors.white))),
+            ),
+            SizedBox(height: 25,),
+            ElevatedButton( onPressed: () {
+                  controller.Add(NoteModel(
+                    id: id.text,
+                    date: date.text,
+                    time: time.text,
+                    discription: description.text,
+                    title: title.text,
+                  ));
+            },
+                child: Text("Add Data"))
+          ],
+        ),
+      ),
+
+    );
+  }
+}
